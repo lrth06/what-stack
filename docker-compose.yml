@@ -3,6 +3,7 @@ services:
   client:
     image: lrth06/what-stack-client:latest
     container_name: what-stack-client
+
     ports:
       - "8080:80"
     depends_on:
@@ -10,4 +11,9 @@ services:
 
   server:
     image: lrth06/what-stack-server:latest
-    container_name: what-stack
+    container_name: what-stack-server
+    environment:
+      - PORT=${PORT}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    ports:
+      - "5000:5000"
