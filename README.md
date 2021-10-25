@@ -2,7 +2,7 @@
 
 This is a visual representation of a user's code usage. It utilizes an [Express](https://expressjs.com/) proxy server and [React](https://reactjs.com/) frontend. The proxy server will query the github API for a given user's repositories, then analyze their code usage within.
 
-![example screenshot](https://raw.githubusercontent.com/lrth06/whatstack/example.png)
+![example screenshot](https://raw.githubusercontent.com/lrth06/what-stack/main/example.png)
 
 ## Usage
 
