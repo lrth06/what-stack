@@ -5,35 +5,46 @@ require('dotenv').config();
 const axios = require('axios');
 async function getRepos(username) {
     console.log(`Getting repos for ${username}`);
+    //check if user exists
+
+try{
     let languages = {}
     const url = `https://api.github.com/users/${username}/repos`;
     const res = await axios.get(url, {
         headers: {
         Authorization: `token ${process.env.GITHUB_TOKEN}`
         }
-    })
-    //get all repos for a user and store the languages in an object with the value being the size of the repo
-    //if a language is already in the object, add the size to the existing value
-    if(res.data.length > 0) {
+    });
         console.log(`Found ${res.data.length} repos`);
         res.data.forEach(repo => {
-           //return the languages and the size of the repo and add to a json object
-           //if repo.language is null set it to 'Other"
-              if(repo.language === null) {
-                repo.language = 'Other';
-              }
+            if(repo.language) {
                 if(languages[repo.language]) {
                     languages[repo.language] += repo.size;
-                }
-                else {
+                } else {
                     languages[repo.language] = repo.size;
                 }
-                console.log(`Adding ${repo.size} lines of ${repo.language}  from ${repo.name}`);
+            } else {
+                if(languages["Other"]) {
+                    languages["Other"] += repo.size;
+                } else {
+                    languages["Other"] = repo.size;
+                }
+            }
+        }
+        );
+        return Object.keys(languages).sort((a,b) => languages[b] - languages[a]).map(key => {
+            return {
+                language: key,
+                size: languages[key]
+            }
+        }
+        )
+}catch(err){
+    console.log(err);
+    return
+}
     
-        })
-    }  
-    console.log(languages);
-    return languages;
+
 
 }
 module.exports = {getRepos};

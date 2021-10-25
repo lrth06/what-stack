@@ -13,7 +13,11 @@ app.get('/:id', (req, res) => {
     const id = req.params.id;
     github.getRepos(id)
         .then(data => { 
-            return res.json(data)
+            if(data) {
+                res.json(data);
+            }else{
+                res.status(404).json('User not found')
+            }
         })
 });
 

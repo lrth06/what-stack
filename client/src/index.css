@@ -9,6 +9,42 @@ body {
 }
 .App {
   text-align: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 1vmin);
   color: white;
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #282c34;
+}
+
+.graph {
+  margin: auto;
+  width: 30vw;
+  height: auto;
+}
+.form {
+  bottom: 0;
+  padding: 1rem;
+}
+@media screen and (max-width: 780px) {
+  .graph {
+    margin: auto;
+    width: 90vw;
+    height: auto;
+  }
+  .form {
+    bottom: 0;
+    padding: 1rem;
+  }
+}
+@media screen and (min-width: 780px) {
+  .graph {
+    width: 30vw;
+    height: auto;
+  }
+  .form {
+    bottom: 0;
+    padding: 1rem;
+  }
 }
