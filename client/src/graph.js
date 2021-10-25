@@ -7,9 +7,12 @@
 
 import { useState, useEffect } from 'react';
 import { PolarArea,Radar,Bar } from 'react-chartjs-2';
+import { Chart } from 'chart.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import axios from 'axios';
 
 export function PolarGraph(){
+    Chart.register(zoomPlugin);
     const [user, setUser] =useState('lrth06');
     const [type, setType] = useState('polar');
     const [data, setData] = useState([]);
@@ -138,8 +141,7 @@ export function PolarGraph(){
     }else{
     return(
         <div>
-            <div className='graph'>
-                <h1>whatStack?</h1>
+            <h1>whatStack?</h1>
                 <p>Enter any Github user's name and get a visualization of what languages are used and at what frequency in their code!</p>
                 <p>A few things about this chart:</p>
                 <ul>
@@ -149,7 +151,7 @@ export function PolarGraph(){
                     <li>The values in the chart represent lines of code among a users public repositories</li>
                     </ul>
                 <span>Data for: {user}</span>
-                {/* <PolarArea data={dataSet}  /> */}
+            <div className='graph'>
                 {type === 'polar' && <PolarArea data={dataSet} options={options} /> }
                 {type ==='radar' && <Radar data={dataSet} options={options}  />}
                 {type ==='bar' && <Bar data={dataSet}  />}

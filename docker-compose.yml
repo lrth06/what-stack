@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  client:
+    image: lrth06/what-stack-client:latest
+    container_name: what-stack-client
+    ports:
+      - "8080:80"
+    depends_on:
+      - "server"
+
+  server:
+    image: lrth06/what-stack-server:latest
+    container_name: what-stack
